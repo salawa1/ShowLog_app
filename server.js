@@ -1,12 +1,14 @@
 const express = require("express");
+const cors = require("cors");
+
+// Routes
 const showsRoutes = require("./src/accounts/routes");
 
 const app = express();
 const port = 3005;
 
 app.use(express.json());
-const cors = require("cors");
-app.use(cors( {
+app.use(cors({
     origin: '*'
 }));
 
