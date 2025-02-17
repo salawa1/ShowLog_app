@@ -9,10 +9,10 @@ const pool = new Pool({
 
     //Render account
 
-    user: "cmps262_xawl_user",
-    password: "ALnUIZa6mFfcMYSilL0dMTNrcB4wHBCN",
-    host: "dpg-cucmf39opnds73aj7eq0-a",
-    database: "cmps262_xawl",
+    user: "samalawadhi",
+    password: "Zo4CApmua2p6QN2T8ew8msgV6Clb5LEc",
+    host: "dpg-cups04qn91rc73aofi90-a",
+    database: "showlog_app",
     port: 5432,
 });
 
