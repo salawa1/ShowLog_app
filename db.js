@@ -12,7 +12,7 @@ const pool = new Pool({
     user: "cmps262_xawl_user",
     password: "ALnUIZa6mFfcMYSilL0dMTNrcB4wHBCN",
     host: "dpg-cucmf39opnds73aj7eq0-a",
-    database: "cmps262_xawl",
+    database: "ShowLog_app",
     port: 5432,
 });
 
