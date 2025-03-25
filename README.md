@@ -6,11 +6,11 @@ Welcome to **ShowLog!** This website is a TV show logging platform heavily inspi
 
 ## 🔶 Table of Contents
 
-- [Installation and Setup](#installation-and-setup)
-- [Usage Instructions](#usage-instructions)
-- [API Integration](#api-integration)
-- [Contributing Guidelines](#contributing-guidelines)
-- [Live Demo](#live-demo)
+- Installation and Setup
+- Usage Instructions
+- API Integration
+- Contributing Guidelines
+- Live Demo
 
 ## 🔷 Installation and Setup
 
@@ -45,20 +45,48 @@ Make to have the following installed:
 
 Users can interact with ShowLog by
 - Logging their favorite TV shows.
-  ![Homepage](images/screenshot.png)
+  
+  <img width="1800" alt="image" src="https://github.com/user-attachments/assets/dbe133d8-50e8-4474-b885-d640b33c4c45" />
+
   
 - Viewing all logged shows.
-  ![Homepage](images/screenshot.png)
+
+  <img width="1800" alt="image" src="https://github.com/user-attachments/assets/001ab9dc-b672-4670-a0e9-f35d4b833e23" />
+
   
 - Rating shows on a 5-star scale.
-  ![Homepage](images/screenshot.png)
+
+
+  
   
 - Editing and deleting logs.
-  ![Homepage](images/screenshot.png)
+
+<img width="1800" alt="image" src="https://github.com/user-attachments/assets/fd23eaa8-54dd-4e3a-a869-14cd69b0a381" />
+
 
 
 ## 🔷 API Integration
 
+Example of front-end interacting with back-end API (POST method):
+
+```json
+ if(data.name == "" || data.seasons == "" || data.genre == "" || data.releaseyear == "" || data.country == "" || data.service == "") {
+        $.toaster({priority: 'danger', title: 'Error', message : 'Oops something broke'});
+    }
+    else {
+        fetch('https://showlog-app.onrender.com/api/v1/shows/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }).then(res => res.json())
+        .then(data => console.log(data))
+        .then(error => console.log(error))
+        $.toaster({priority: 'success', title: 'Show added', message : 'New show logged successfully!'});
+    }
+});
+```
 
 ## 🔷 Contributing Guidelines
 
