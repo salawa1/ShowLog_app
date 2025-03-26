@@ -1,9 +1,9 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const escapeStringRegexp = require("escape-string-regexp");
 const https = require("https");
 const fs = require("fs");
+const { query, param, validationResult } = require("express-validator");
 
 // Load SSL Certificate and Private Key
 const options = {
@@ -23,21 +23,22 @@ app.use(cors({
     origin: '*'
 }));
 
-// Middleware to sanitize query parameters before they reach index.js
-app.use((req, res, next) => {
-    for (let key in req.query) {
-        req.query[key] = escapeStringRegexp(req.query[key]); 
-    }
-    for (let key in req.params) {
-        req.params[key] = escapeStringRegexp(req.params[key]);
+// Middleware to validate input before passing to index.js
+app.use([
+    query("search").optional().isString().trim().escape(),
+    param("id").optional().isInt(), 
+], (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
     }
     next();
 });
 
-// route
+// Default route
 app.get("/", (req, res) => {
     res.send("Who will win the Grammys??");
-})
+});
 
 app.use("/api/v1/shows", showsRoutes);
 
