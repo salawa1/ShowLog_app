@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const escapeStringRegexp = require("escape-string-regexp");
 const https = require("https");
 const fs = require("fs");
 
@@ -21,6 +22,17 @@ app.use(helmet());
 app.use(cors({
     origin: '*'
 }));
+
+// Middleware to sanitize query parameters before they reach index.js
+app.use((req, res, next) => {
+    for (let key in req.query) {
+        req.query[key] = escapeStringRegexp(req.query[key]); 
+    }
+    for (let key in req.params) {
+        req.params[key] = escapeStringRegexp(req.params[key]);
+    }
+    next();
+});
 
 // route
 app.get("/", (req, res) => {
