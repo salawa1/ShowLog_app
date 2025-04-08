@@ -1,15 +1,9 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const https = require("https");
+//const https = require("https");
 const fs = require("fs");
 const { query, param, validationResult } = require("express-validator");
-
-// Load SSL Certificate and Private Key
-const options = {
-    key: fs.readFileSync("./ssl/key.pem"),
-    cert: fs.readFileSync("./ssl/cert.pem") 
-};
 
 // Routes
 const showsRoutes = require("./src/shows/routes");
@@ -42,7 +36,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/shows", showsRoutes);
 
-// Use HTTPS server instead of HTTP
-https.createServer(options, app).listen(port, () => {
-    console.log(`Secure server running on port ${port}`);
-});
+// HTTP
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
