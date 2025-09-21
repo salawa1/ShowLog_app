@@ -24,7 +24,7 @@
     "express": "^4.21.2",
     "express-validator": "^7.2.1",
     "helmet": "^8.1.0",
-    "nodemon": "^3.1.9",
+    "nodemon": "^3.1.10",
     "pg": "^8.13.1"
   }
 }
